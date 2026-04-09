@@ -45,6 +45,9 @@ onMounted(() => {
 })
 
 const setActive = (row: number, col: number) => {
+  if (editing.value) {
+    cancelEdit()
+  }
   active.value = { row, col }
 }
 
@@ -98,6 +101,12 @@ const cellClass = (row: number, col: number) => ({
     height: 40px;
     text-align: center;
     cursor: pointer;
+  }
+
+  td > div {
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .active {
